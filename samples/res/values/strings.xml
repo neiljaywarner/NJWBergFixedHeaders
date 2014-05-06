@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Berg</string>
+    <string name="label_column_header">ACTIVITY</string>
+
+    <string-array name="question_labels">
+        <item>1.SITTING TO STANDING</item>
+        <item>2.STANDING UNSUPPORTED</item>
+        <item>3.SIT W/BACK UNSUP. FEET SUP</item>
+        <item>4.STANDING TO SITTING</item>
+        <item>5.TRANSFERS</item>
+        <item>6.STAND UNSUP W/EYES CLOSED</item>
+        <item>7.STAND UNSUP W/FEET TOGETHER</item>
+        <item>8.STAND-REACH FWD W/ARM</item>
+        <item>9.STAND-PICKUP OBJECT FROM FLOOR</item>
+        <item>10.STAND-LOOK BEHIND SHOULDERS</item>
+        <item>11.TURN 360 DEGREES</item>
+        <item>12.PLACE ALT FOOT ON STEP WHILE UNSUPPORTED</item>
+        <item>13.STANDING UNSUPPORTED ONE FOOT IN FRONT</item>
+        <item>14.STANDING ON ONE LEG</item>        
+
+    </string-array>
+</resources>
