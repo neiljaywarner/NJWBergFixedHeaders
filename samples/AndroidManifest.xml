@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.inqbarna.tablefixheaders.samples"
-    android:versionCode="1"
-    android:versionName="1.0"
+    package="com.spiritflightapps.berg"
+    android:versionCode="007"
+    android:versionName="0.7"
     >
 
     <uses-sdk
-        android:minSdkVersion="4"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="false"
@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".AssessmentActivity"
+            android:name="com.spiritflightapps.berg.AssessmentActivity"
              >
 
             <intent-filter>

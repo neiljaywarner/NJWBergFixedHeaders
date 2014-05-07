@@ -3,6 +3,8 @@
 
     <string name="app_name">Berg</string>
     <string name="label_column_header">ACTIVITY</string>
+    <string name="total">TOTAL</string>
+
 
     <string-array name="question_labels">
         <item>1.SITTING TO STANDING</item>

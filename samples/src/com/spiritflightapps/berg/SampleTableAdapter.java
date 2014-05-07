@@ -1,4 +1,4 @@
-package com.inqbarna.tablefixheaders.samples.adapters;
+package com.spiritflightapps.berg;
 
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
 
@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Mutuactivos.
  * 
  * 
- * @author Brais Gabín
+ * @author Brais Gabï¿½n
  */
 public abstract class SampleTableAdapter extends BaseTableAdapter {
 	private final Context context;
@@ -56,6 +56,8 @@ public abstract class SampleTableAdapter extends BaseTableAdapter {
 			converView = inflater.inflate(getLayoutResource(row, column), parent, false);
 		}
 		setText(converView, getCellString(row, column));
+        //TODO: Cleanup, redesign, document!!!.. code review by Levoy..custom control that includes the edittexts already, something
+
 		return converView;
 	}
 
