@@ -52,26 +52,7 @@ public abstract class SampleTableAdapter extends BaseTableAdapter {
 
 
 
-	/**
-	 * Sets the text to the view.
-	 * 
-	 * @param view
-	 * @param text
-	 */
-	public void setText(View view, String text) {
-		((TextView) view.findViewById(android.R.id.text1)).setText(text);
-	}
 
-	/**
-	 * @param row
-	 *            the title of the row of this header. If the column is -1
-	 *            returns the title of the row header.
-	 * @param column
-	 *            the title of the column of this header. If the column is -1
-	 *            returns the title of the column header.
-	 * @return the string for the cell [row, column]
-	 */
-	public abstract String getCellString(int row, int column);
 
-	public abstract int getLayoutResource(int row, int column);
+
 }

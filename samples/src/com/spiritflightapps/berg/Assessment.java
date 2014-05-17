@@ -37,21 +37,22 @@ public class Assessment {
      * @return
      */
     public String getTotalString() {
-        String ans="";
-        int total = 0;
-        for (EditText editText : mEditTextFields.values()) {
-            ans = editText.toString().trim();
-            if (TextUtils.isDigitsOnly(ans)) {
-                total+= Integer.valueOf(ans);
-            } else {
-                return "";
-            }
-
-        }
-        if (mEditTextFields.size() < 14) {
-            return "";
-        }
-        return String.valueOf(total); //if it made it through.
+        return "tot";
+//        String ans="";
+//        int total = 0;
+//        for (EditText editText : mEditTextFields.values()) {
+//            ans = editText.toString().trim();
+//            if (TextUtils.isDigitsOnly(ans)) {
+//                total+= Integer.valueOf(ans);
+//            } else {
+//                return "";
+//            }
+//
+//        }
+//        if (mEditTextFields.size() < 14) {
+//            return "";
+//        }
+//        return String.valueOf(total); //if it made it through.
     }
 
 

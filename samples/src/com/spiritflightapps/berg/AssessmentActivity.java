@@ -1,5 +1,6 @@
 package com.spiritflightapps.berg;
 
+import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -47,6 +48,11 @@ public class AssessmentActivity extends Activity {
 			height = resources.getDimensionPixelSize(R.dimen.table_height);
 		}
 
+        class ViewHolder {
+            TextView text; //could be an edittext or textview
+
+        }
+
 		@Override
 		public int getRowCount() {
 			return resources.getStringArray(R.array.question_labels).length + 1;
@@ -58,24 +64,24 @@ public class AssessmentActivity extends Activity {
 		}
 
 
+
+
         @Override
         public View getView(final int row, final int column, View converView, ViewGroup parent) {
-            if (converView == null) {
-                converView = getInflater().inflate(getLayoutResource(row, column), parent, false);
+            View rowView = converView;
+            if (rowView == null) {
+                rowView = getInflater().inflate(getLayoutResource(row, column), parent, false);
+                ViewHolder viewHolder = new ViewHolder();
+                viewHolder.text = (TextView) rowView.findViewById(android.R.id.text1);
+                rowView.setTag(viewHolder);
             }
-            setText(converView, getCellString(row, column));
-            EditText editText = (EditText) converView.findViewWithTag("answer");
-            if (editText != null) {
-              //  mAssessments.get(column).addEditText(row, editText);
-            }
-            if ((column > -1) && (row == getRowCount() -1)) { //ie total field
-                TextView textView = (TextView) converView.findViewById(android.R.id.text1);
-                mAssessments.get(column).setTotalTextView(textView);
-                //   mAssessments.get(column).handleTotalView(textView);
-            }
-            //TODO: Cleanup, redesign, document!!!.. code review by Levoy..custom control that includes the edittexts already, something
-            return converView;
+       //     setText(converView, getCellString(row, column));
+            ViewHolder holder = (ViewHolder) rowView.getTag();
+            holder.text.setText(getCellString(row, column));
+            return rowView;
         }
+
+
         /*
         @Override
         public View getView(int row, int column, View converView, ViewGroup parent) {
@@ -114,7 +120,6 @@ public class AssessmentActivity extends Activity {
 			return height;
 		}
 
-		@Override
 		public String getCellString(int row, int column) {
             if ((row == -1) && (column == -1)) {
                 return resources.getString(R.string.label_column_header);
@@ -134,15 +139,14 @@ public class AssessmentActivity extends Activity {
                 return mAssessments.get(column).getTotalString();
             }
 
-            return  row + ". " + column;
-            //return mAssessments.get(column).hashMapAnswersStrings.get(row); //todo: 1-4
+          //  return  row + ". " + column;
+            return mAssessments.get(column).hashMapAnswersStrings.get(row); //todo: 1-4
 
             //TODO: Initialize and don't overwrite, hello.... or make sure and update the object ontextchanged, etc.
 		}
 
 
 
-		@Override
 		public int getLayoutResource(int row, int column) {
 			final int layoutResource;
 			switch (getItemViewType(row, column)) {
@@ -199,4 +203,6 @@ public class AssessmentActivity extends Activity {
 			return 4;
 		}
 	}
+
+
 }
