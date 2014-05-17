@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AssessmentActivity extends Activity {
 
@@ -21,7 +26,10 @@ public class AssessmentActivity extends Activity {
 
 		TableFixHeaders tableFixHeaders = (TableFixHeaders) findViewById(R.id.table);
         ArrayList<Assessment> assessments = Assessment.getDummyAssessments(); //TODO: Load from cursor
-		tableFixHeaders.setAdapter(new MyAdapter(this, assessments));
+		assessments.add(Assessment.getNewAssessment());
+        MyAdapter adapter = new MyAdapter(this, assessments);
+        adapter.notifyDataSetChanged();
+        tableFixHeaders.setAdapter(adapter);
 	}
     //TODO: Definitely put this in its own java file with a reasonable name.
 	public class MyAdapter extends SampleTableAdapter {
@@ -49,16 +57,43 @@ public class AssessmentActivity extends Activity {
 			return mAssessments.size();
 		}
 
+
+        @Override
+        public View getView(final int row, final int column, View converView, ViewGroup parent) {
+            if (converView == null) {
+                converView = getInflater().inflate(getLayoutResource(row, column), parent, false);
+            }
+            setText(converView, getCellString(row, column));
+            EditText editText = (EditText) converView.findViewWithTag("answer");
+            if (editText != null) {
+              //  mAssessments.get(column).addEditText(row, editText);
+            }
+            if ((column > -1) && (row == getRowCount() -1)) { //ie total field
+                TextView textView = (TextView) converView.findViewById(android.R.id.text1);
+                mAssessments.get(column).setTotalTextView(textView);
+                //   mAssessments.get(column).handleTotalView(textView);
+            }
+            //TODO: Cleanup, redesign, document!!!.. code review by Levoy..custom control that includes the edittexts already, something
+            return converView;
+        }
+        /*
         @Override
         public View getView(int row, int column, View converView, ViewGroup parent) {
             View view = super.getView(row,column,converView,parent);
             EditText editText = (EditText) view.findViewWithTag("answer");
             if (editText !=null ) {
-                mAssessments.get(column).addEditText(editText);
+                mAssessments.get(column).addEditText(row,editText);
+            }
+            if ((column > -1) && (row == getRowCount() -1)) { //ie total field
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                mAssessments.get(column).setTotalTextView(textView);
+             //   mAssessments.get(column).handleTotalView(textView);
             }
             return view;
         }
 
+
+*/
             /**
              * width * 5 is a quick way to make it 'about right' for now. TODO: Design work.
              * @param column
@@ -99,8 +134,9 @@ public class AssessmentActivity extends Activity {
                 return mAssessments.get(column).getTotalString();
             }
 
-            //return  row + ". " + column;
-            return mAssessments.get(column).answers.get(row); //todo: 1-4
+            return  row + ". " + column;
+            //return mAssessments.get(column).hashMapAnswersStrings.get(row); //todo: 1-4
+
             //TODO: Initialize and don't overwrite, hello.... or make sure and update the object ontextchanged, etc.
 		}
 

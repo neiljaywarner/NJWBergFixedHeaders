@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Mutuactivos.
  * 
  * 
- * @author Brais Gab�n
+ * @author Brais Gab�n, modiifed by Neil Warner
  */
 public abstract class SampleTableAdapter extends BaseTableAdapter {
 	private final Context context;
@@ -50,16 +50,7 @@ public abstract class SampleTableAdapter extends BaseTableAdapter {
 		return inflater;
 	}
 
-	@Override
-	public View getView(int row, int column, View converView, ViewGroup parent) {
-		if (converView == null) {
-			converView = inflater.inflate(getLayoutResource(row, column), parent, false);
-		}
-		setText(converView, getCellString(row, column));
-        //TODO: Cleanup, redesign, document!!!.. code review by Levoy..custom control that includes the edittexts already, something
 
-		return converView;
-	}
 
 	/**
 	 * Sets the text to the view.
@@ -67,7 +58,7 @@ public abstract class SampleTableAdapter extends BaseTableAdapter {
 	 * @param view
 	 * @param text
 	 */
-	private void setText(View view, String text) {
+	public void setText(View view, String text) {
 		((TextView) view.findViewById(android.R.id.text1)).setText(text);
 	}
 
